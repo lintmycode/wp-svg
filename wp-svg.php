@@ -3,12 +3,15 @@
  * Plugin Name: nitida — SVG Uploads
  * Description: Allows SVG uploads to the media library and sanitizes every one, so an uploaded SVG cannot carry script.
  * Version: 1.0.0
+ * Requires PHP: 8.1
  * Author: nitida
  * License: MIT
  *
- * Installed as a Composer package (type wordpress-muplugin) into web/app/mu-plugins/,
- * loaded by roots/bedrock-autoloader. enshrined/svg-sanitize comes in through the site's
- * own composer install and Bedrock's root autoloader.
+ * A regular plugin, not a mu-plugin, on purpose: SVG uploads are a per-site choice, so a
+ * site turns them on by activating this and off by deactivating it. Installed as a
+ * Composer package (type wordpress-plugin) into web/app/plugins/wp-svg/.
+ * enshrined/svg-sanitize comes in through the site's own composer install and Bedrock's
+ * root autoloader.
  *
  * Replaces the hand-copied svg-upload-support.php (on 9 sites as of 2026-10-08). That file
  * rejected an SVG only if it contained one of six tag names (`<script`, `<iframe`...), so

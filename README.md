@@ -1,6 +1,7 @@
-# nitida/wp-mu-svg
+# nitida/wp-svg
 
-WordPress must-use plugin, installed with Composer, that allows SVG uploads
+WordPress plugin, installed with Composer and **activated per site**, that
+allows SVG uploads
 and runs every one through an allowlist sanitizer
 ([enshrined/svg-sanitize](https://github.com/darylldoyle/svg-sanitizer), the
 library WordPress VIP and Safe SVG use) before WordPress stores it.
@@ -17,6 +18,8 @@ bad words, and refuses anything it can't parse.
 
 ## Behaviour
 
+- A regular plugin, not a mu-plugin: SVG uploads are a per-site choice.
+  Active = SVG allowed and sanitized; inactive = no SVG uploads at all.
 - `svg` is added to the allowed upload types only while the sanitizer class
   is present. No sanitizer, no SVG uploads.
 - Browser uploads and sideloads (REST, `media_sideload_image`, imports) are
@@ -28,13 +31,22 @@ bad words, and refuses anything it can't parse.
 ## Install (Bedrock)
 
 ```bash
-composer config repositories.wp-mu-svg vcs https://github.com/lintmycode/wp-mu-svg.git
-composer require nitida/wp-mu-svg:^1.0
+composer config repositories.wp-svg vcs https://github.com/lintmycode/wp-svg.git
+composer require nitida/wp-svg:^1.0
 ```
 
-`composer/installers` puts it in `web/app/mu-plugins/wp-mu-svg/`. Make sure
-that directory is ignored, and **delete `svg-upload-support.php`** in the same
-commit: it adds the same mime type and would keep its weaker check running.
+`composer/installers` puts it in `web/app/plugins/wp-svg/` (already ignored by
+Bedrock). In the same commit **delete `svg-upload-support.php`** from
+`mu-plugins/`: it adds the same mime type and keeps its weaker check running.
+
+Activation lives in the database, so after each deploy that brings it in:
+
+```bash
+wp plugin activate wp-svg
+```
+
+Until then the site has no SVG uploads (the old mu-plugin is gone), which is
+the safe failure.
 
 SVGs already in the library were never sanitized. They are usually logos
 uploaded by staff, but on a site with many uploaders, re-upload or check them.

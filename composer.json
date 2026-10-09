@@ -1,11 +1,14 @@
 {
-    "name": "nitida/wp-mu-svg",
-    "description": "WordPress must-use plugin: allows SVG uploads and sanitizes every one with enshrined/svg-sanitize, so an uploaded SVG cannot run script.",
-    "type": "wordpress-muplugin",
+    "name": "nitida/wp-svg",
+    "description": "WordPress plugin: allows SVG uploads and sanitizes every one with enshrined/svg-sanitize, so an uploaded SVG cannot run script. Activate per site.",
+    "type": "wordpress-plugin",
     "license": "MIT",
-    "homepage": "https://github.com/lintmycode/wp-mu-svg",
+    "homepage": "https://github.com/lintmycode/wp-svg",
     "authors": [
-        { "name": "nitida", "homepage": "https://nitida.pt" }
+        {
+            "name": "nitida",
+            "homepage": "https://nitida.pt"
+        }
     ],
     "require": {
         "php": ">=8.1",
